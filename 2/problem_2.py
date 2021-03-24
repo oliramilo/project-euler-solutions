@@ -1,6 +1,15 @@
+from functools import cache, lru_cache
 #even fibonacci numbers
 
 
+
+# remembers the values of the previus 
+# computed function using cache
+
+# lru_cache requires a specified size for the
+# limit of previous computed function
+
+@lru_cache(maxsize=2)
 def fib_seq(terms):
     if terms <= 1:
         return terms
