@@ -1,3 +1,4 @@
+# palindrome number of 2 3-digit products
 from functools import cache
 j = 10
 i = 10
