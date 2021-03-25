@@ -1,28 +1,27 @@
 # palindrome number of 2 3-digit products
-from functools import cache
-j = 10
-i = 10
+import math
 
-@cache
 def calculate(i,j):
     return i*j
 
-@cache
 def palindrome(num):
-    strnum = str(num)
-    is_palindrome = True
-    j = 0
-    i = len(strnum) - 1
-    while is_palindrome and j < len(strnum) and i >= 0:
-        if strnum[i] != strnum[j]:
+    if num <= 0:
+        return num == 0
+    # number of digits of num
+    dgt_size = math.floor(math.log(num,10)) + 1
+    # let msd be the most significant digit of num
+    msd = 10**(dgt_size - 1)
+    for i in range(dgt_size // 2):
+        if num // msd != num % 10:
             return False
-        j+=1
-        i-=1
+        num %= msd # Remove the most significant digit of num
+        num //= 10 # Remove the least significant digit of num
+        msd //= 100 
     return True
 
 largest = 0
-for i in range(999):
-    for j in range(999):
+for i in range(10,999):
+    for j in range(10,999):
         num = calculate(i,j)
         if palindrome(num):
             if largest < num:
