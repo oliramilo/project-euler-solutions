@@ -1,16 +1,31 @@
 #largest prime factor
+import math
+from functools import cache
 NUM = 600851475143
 largest = 0
 
-def generate_primes(num):
-    primes = []
-    is_prime = [False,False] + [True] * (num-1)
-    for p in range(2,num+1):
-        if is_prime[p]:
-            primes.append(p)
-            for i in range(p,num+1,p):
-                is_prime[i] = False
-    return primes
+def is_prime(n):
+ 
+    # Corner case
+    if (n <= 1):
+        return False
+ 
+    # Check from 2 to n-1
+    for i in range(2, n):
+        if (n % i == 0):
+            return False
+ 
+    return True
+ 
 
 
-print(max(generate_primes(NUM)))
+done = False
+i = 29
+max_prime_num = i
+while i < math.floor((NUM/4)):
+    if is_prime(i):
+        max_prime_num=i
+        print(max_prime_num)
+    i+=1
+
+print(max_prime_num)
